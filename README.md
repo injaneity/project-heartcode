@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+`https://zen-coded.notion.site/Project-HeartCode-1567993dd48e80c890f5ea244927729b`
+
 First, run the development server:
 
 ```bash
