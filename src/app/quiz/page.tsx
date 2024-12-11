@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { SelectItem, SelectTrigger, SelectValue, SelectContent } from "@/components/ui/select"
+import { useState } from "react"
 
 const FormSchema = z.object({
     username: z.string().min(2, {
@@ -41,6 +42,7 @@ const FormSchema = z.object({
 
 export default function Quiz() {
     const { toast } = useToast();
+    const [score, setCalculateScore] = useState<number>(0);
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
@@ -50,13 +52,25 @@ export default function Quiz() {
     })
 
     function onSubmit(data: z.infer<typeof FormSchema>) {
+        if (data.q1 === "3") {
+            setCalculateScore((prevScore) => prevScore + 1)
+        }
+        if (data.q2 === "4") {
+            setCalculateScore((prevScore) => prevScore + 1)
+        }
+        if (data.q3 === "2") {
+            setCalculateScore((prevScore) => prevScore + 1)
+        }
+        if (data.q4 === "3") {
+            setCalculateScore((prevScore) => prevScore + 1)
+        }
+        if (data.q5 === "2") {
+            setCalculateScore((prevScore) => prevScore + 1)
+        }
+
         toast({
-            title: "You submitted the following values:",
-            description: (
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                    <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-                </pre>
-            ),
+            title: `Congratulations ${data.username}! You scored ${score}.`,
+            description: "Refresh the page to try again."
         })
     }
 
