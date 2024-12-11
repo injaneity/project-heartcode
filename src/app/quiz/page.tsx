@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Select } from "@/components/ui/select"
-import { toast } from "@/hooks/use-toast"
+import { useToast } from "@/hooks/use-toast"
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -23,17 +23,25 @@ const FormSchema = z.object({
         message: "Username must be at least 2 characters.",
     }),
     q1: z.string({
-      required_error: "Please select an answer"
+        required_error: "Please select an answer"
     }),
     q2: z.string({
-      required_error: "Please select an answer"
+        required_error: "Please select an answer"
     }),
     q3: z.string({
-      required_error: "Please select an answer"
+        required_error: "Please select an answer"
+    }),
+    q4: z.string({
+        required_error: "Please select an answer"
+    }),
+    q5: z.string({
+        required_error: "Please select an answer"
     }),
 })
 
-export function InputForm() {
+export default function Quiz() {
+    const { toast } = useToast();
+
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -62,7 +70,7 @@ export function InputForm() {
                         <FormItem>
                             <FormLabel>Username</FormLabel>
                             <FormControl>
-                                <Input placeholder="Name" {...field} />
+                                <Input placeholder="Enter Name" {...field} />
                             </FormControl>
                             <FormDescription>
                                 This is your public display name.
@@ -76,10 +84,10 @@ export function InputForm() {
                     name="q1"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Q1. What is drug abuse?</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>    
+                            <FormLabel>Q1 What is drug abuse?</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
-                                    <SelectTrigger> 
+                                    <SelectTrigger>
                                         <SelectValue placeholder="Select an Answer" />
                                     </SelectTrigger>
                                 </FormControl>
@@ -99,10 +107,7 @@ export function InputForm() {
                     name="q2"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Q2.Why might someone start using drugs in the first place? </FormLabel>
-                            <FormDescription>
-                                Test
-                            </FormDescription>
+                            <FormLabel>Q2 Why might someone start using drugs in the first place? </FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                     <SelectTrigger>
@@ -125,10 +130,7 @@ export function InputForm() {
                     name="q3"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Q3</FormLabel>
-                            <FormDescription>
-                                Test
-                            </FormDescription>
+                            <FormLabel>Q3 What is the minimum punishment for possession of a controlled drug in Singapore?</FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                     <SelectTrigger>
@@ -136,9 +138,56 @@ export function InputForm() {
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                    <SelectItem value="m@example.com">m@example.com</SelectItem>
-                                    <SelectItem value="m@google.com">m@google.com</SelectItem>
-                                    <SelectItem value="m@support.com">m@support.com</SelectItem>
+                                    <SelectItem value="1">Fine only</SelectItem>
+                                    <SelectItem value="2">Imprisonment for at least 5 years</SelectItem>
+                                    <SelectItem value="3">Imprisonment for at least 10 years</SelectItem>
+                                    <SelectItem value="4">Community service</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="q4"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Q4 Which of the following is a major factor in preventing drug abuse in young people?</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select an Answer" />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                    <SelectItem value="1">Increased availability of drugs </SelectItem>
+                                    <SelectItem value="2">Peer pressure and lack of awareness</SelectItem>
+                                    <SelectItem value="3">Strong family support and education about risks</SelectItem>
+                                    <SelectItem value="4">Legalizing certain drugs for recreational use</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="q5"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Q5 Which of the following is a common sign that someone may be struggling with drug abuse?</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select an Answer" />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                    <SelectItem value="1">Increased focus and productivity</SelectItem>
+                                    <SelectItem value="2">Sudden changes in behavior, mood swings, and neglect of responsibilities</SelectItem>
+                                    <SelectItem value="3">Increased energy and positive outlook</SelectItem>
+                                    <SelectItem value="4">Improved physical health and appearance</SelectItem>
                                 </SelectContent>
                             </Select>
                             <FormMessage />
@@ -149,12 +198,4 @@ export function InputForm() {
             </form>
         </Form>
     )
-}
-
-export default function Quiz() {
-    return (
-        <div>
-            <InputForm />
-        </div>
-    );
 }
