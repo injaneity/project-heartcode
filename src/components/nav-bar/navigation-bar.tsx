@@ -6,6 +6,7 @@ const navItems: NavigationMenuItem[] = [
     { navigationLink: "/", navigationDescription: "Project Heartcode" },
     { navigationLink: "/joelys", navigationDescription: "Joelys" },
     { navigationLink: "/vania", navigationDescription: "Vania" },
+    { navigationLink: "/quiz", navigationDescription: "Quiz" },
 
 ]
 
