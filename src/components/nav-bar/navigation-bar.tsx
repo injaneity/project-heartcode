@@ -1,5 +1,6 @@
 import { NavigationItem, NavigationMenuItem } from "@/components/nav-bar/navigation-item";
 import { NavigationMenu } from "@radix-ui/react-navigation-menu";
+import { ModeToggle } from "../theme-button/theme-button";
 
 const navItems: NavigationMenuItem[] = [
     { navigationLink: "/", navigationDescription: "Project Heartcode" },
@@ -13,6 +14,9 @@ export default function NavigationBar() {
         <NavigationMenu className="sticky top-0 list-none flex justify-between min-w-full h-[40px] bg-muted px-5">
             <div className="flex flex-row justify-start gap-4">
                 {navItems.map((navItem, index) => <NavigationItem key={index} navigationLink={navItem.navigationLink} navigationDescription={navItem.navigationDescription} />)}
+            </div>
+            <div className="flex flex-row justify-end">
+                <ModeToggle/>
             </div>
         </NavigationMenu>
     )
