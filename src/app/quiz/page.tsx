@@ -22,6 +22,15 @@ const FormSchema = z.object({
     username: z.string().min(2, {
         message: "Username must be at least 2 characters.",
     }),
+    q1: z.string({
+      required_error: "Please select an answer"
+    }),
+    q2: z.string({
+      required_error: "Please select an answer"
+    }),
+    q3: z.string({
+      required_error: "Please select an answer"
+    }),
 })
 
 export function InputForm() {
@@ -64,10 +73,33 @@ export function InputForm() {
                 />
                 <FormField
                     control={form.control}
-                    name="username"
+                    name="q1"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Q1</FormLabel>
+                            <FormLabel>Q1. What is drug abuse?</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>    
+                                <FormControl>
+                                    <SelectTrigger> 
+                                        <SelectValue placeholder="Select an Answer" />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                    <SelectItem value="1">Using drugs as prescribed</SelectItem>
+                                    <SelectItem value="2">Using drugs for recreational purposes</SelectItem>
+                                    <SelectItem value="3">Using drugs in a way that harms your health or violates laws</SelectItem>
+                                    <SelectItem value="4">Using drugs for medical treatment only</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="q2"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Q2.Why might someone start using drugs in the first place? </FormLabel>
                             <FormDescription>
                                 Test
                             </FormDescription>
@@ -78,9 +110,10 @@ export function InputForm() {
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                    <SelectItem value="m@example.com">m@example.com</SelectItem>
-                                    <SelectItem value="m@google.com">m@google.com</SelectItem>
-                                    <SelectItem value="m@support.com">m@support.com</SelectItem>
+                                    <SelectItem value="1"> To fit in with peers</SelectItem>
+                                    <SelectItem value="2">To cope with stress or trauma</SelectItem>
+                                    <SelectItem value="3">To experience pleasure or euphoria</SelectItem>
+                                    <SelectItem value="4"> All of the above </SelectItem>
                                 </SelectContent>
                             </Select>
                             <FormMessage />
@@ -89,32 +122,7 @@ export function InputForm() {
                 />
                 <FormField
                     control={form.control}
-                    name="username"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Q2</FormLabel>
-                            <FormDescription>
-                                Test
-                            </FormDescription>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <FormControl>
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select an Answer" />
-                                    </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                    <SelectItem value="m@example.com">m@example.com</SelectItem>
-                                    <SelectItem value="m@google.com">m@google.com</SelectItem>
-                                    <SelectItem value="m@support.com">m@support.com</SelectItem>
-                                </SelectContent>
-                            </Select>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="username"
+                    name="q3"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Q3</FormLabel>
