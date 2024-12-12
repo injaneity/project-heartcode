@@ -69,22 +69,6 @@ export default function Quiz() {
         if (data.q4 === "3") newScore++;
         if (data.q5 === "2") newScore++;
 
-        // if (data.q1 === "3") {
-        //     setCalculateScore((prevScore) => prevScore + 1)
-        // }
-        // if (data.q2 === "4") {
-        //     setCalculateScore((prevScore) => prevScore + 1)
-        // }
-        // if (data.q3 === "2") {
-        //     setCalculateScore((prevScore) => prevScore + 1)
-        // }
-        // if (data.q4 === "3") {
-        //     setCalculateScore((prevScore) => prevScore + 1)
-        // }
-        // if (data.q5 === "2") {
-        //     setCalculateScore((prevScore) => prevScore + 1)
-        // }
-
         setCalculateScore(newScore);
 
         toast({
