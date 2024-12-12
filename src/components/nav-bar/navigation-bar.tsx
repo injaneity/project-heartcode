@@ -17,7 +17,7 @@ const navItems: NavigationMenuItem[] = [
 export default function NavigationBar() {
 
     return(
-        <NavigationMenu className="sticky top-0 list-none flex justify-between min-w-full h-[40px] bg-system px-5">
+        <NavigationMenu className="sticky top-2 list-none flex justify-between min-w-full h-[40px] bg-system px-5">
             <div className="flex flex-row justify-start gap-4">
                 {navItems.map((navItem, index) => <NavigationItem key={index} navigationLink={navItem.navigationLink} navigationDescription={navItem.navigationDescription} />)}
             </div>
