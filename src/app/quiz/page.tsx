@@ -43,6 +43,7 @@ const FormSchema = z.object({
 export default function Quiz() {
     const { toast } = useToast();
     const [score, setCalculateScore] = useState<number>(0);
+    const [IsSubmitted, setSubmitted] = useState(false);
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
@@ -52,24 +53,42 @@ export default function Quiz() {
     })
 
     function onSubmit(data: z.infer<typeof FormSchema>) {
-        if (data.q1 === "3") {
-            setCalculateScore((prevScore) => prevScore + 1)
-        }
-        if (data.q2 === "4") {
-            setCalculateScore((prevScore) => prevScore + 1)
-        }
-        if (data.q3 === "2") {
-            setCalculateScore((prevScore) => prevScore + 1)
-        }
-        if (data.q4 === "3") {
-            setCalculateScore((prevScore) => prevScore + 1)
-        }
-        if (data.q5 === "2") {
-            setCalculateScore((prevScore) => prevScore + 1)
+        if (IsSubmitted) {
+            toast ({
+                title: `Congratulations ${data.username}! You scored ${score}.`,
+                description: "Refresh the page to try again."
+            })
+            return;
         }
 
+        let newScore = 0;
+
+        if (data.q1 === "3") newScore++;
+        if (data.q2 === "4") newScore++;
+        if (data.q3 === "2") newScore++;
+        if (data.q4 === "3") newScore++;
+        if (data.q5 === "2") newScore++;
+
+        // if (data.q1 === "3") {
+        //     setCalculateScore((prevScore) => prevScore + 1)
+        // }
+        // if (data.q2 === "4") {
+        //     setCalculateScore((prevScore) => prevScore + 1)
+        // }
+        // if (data.q3 === "2") {
+        //     setCalculateScore((prevScore) => prevScore + 1)
+        // }
+        // if (data.q4 === "3") {
+        //     setCalculateScore((prevScore) => prevScore + 1)
+        // }
+        // if (data.q5 === "2") {
+        //     setCalculateScore((prevScore) => prevScore + 1)
+        // }
+
+        setCalculateScore(newScore);
+
         toast({
-            title: `Congratulations ${data.username}! You scored ${score}.`,
+            title: `Congratulations ${data.username}! You scored ${newScore}.`,
             description: "Refresh the page to try again."
         })
     }
