@@ -1,6 +1,7 @@
 import { NavigationItem, NavigationMenuItem } from "@/components/nav-bar/navigation-item";
 import { NavigationMenu } from "@radix-ui/react-navigation-menu";
 import { ModeToggle } from "../theme-button/theme-button";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 const navItems: NavigationMenuItem[] = [
     { navigationLink: "/", navigationDescription: "Project Heartcode" },
@@ -18,6 +19,12 @@ export default function NavigationBar() {
             </div>
             <div className="flex flex-row justify-end">
                 <ModeToggle/>
+                <SignedOut>
+                    <SignInButton />
+                </SignedOut>
+                <SignedIn>
+                    <UserButton />
+                </SignedIn>
             </div>
         </NavigationMenu>
     )
